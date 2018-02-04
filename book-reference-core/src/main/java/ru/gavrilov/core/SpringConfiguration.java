@@ -1,0 +1,24 @@
+package ru.gavrilov.core;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
+
+import java.util.Arrays;
+
+@Configuration
+@ComponentScan(basePackages = "")
+@EnableAutoConfiguration //Заменяет @EnableJpaRepositories,@EntityScan,@EnableJpaAuditing, так же пути можно явно указывать
+public class SpringConfiguration {
+
+    @Autowired
+    private Environment env;
+
+}
