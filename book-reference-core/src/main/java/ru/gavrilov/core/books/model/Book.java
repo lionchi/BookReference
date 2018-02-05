@@ -1,20 +1,34 @@
 package ru.gavrilov.core.books.model;
 
-import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import ru.gavrilov.core.authors.model.Author;
+import ru.gavrilov.core.users.model.User;
 
 import javax.persistence.*;
 import javax.annotation.Nonnull;
+import java.util.Date;
 
 @Entity
 @Table(name = "books")
 @EntityListeners(AuditingEntityListener.class)
-public class Book extends ru.gavrilov.core.Entity {
-    @NotBlank
+public class Book extends ru.gavrilov.core.abstracts.Entity {
+
+    @Column(name = "title")
     private String title;
 
-    @NotBlank
+    @Column(name = "description")
     private String description;
+
+    @Column(name = "date_release")
+    private Date dateRelease;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "author_id")
+    private Author author;
 
     public Book() {
     }
@@ -35,5 +49,22 @@ public class Book extends ru.gavrilov.core.Entity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Nonnull
+    public Date getDate_release() {
+        return dateRelease;
+    }
+
+    public void setDate_release(Date date_release) {
+        this.dateRelease = date_release;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

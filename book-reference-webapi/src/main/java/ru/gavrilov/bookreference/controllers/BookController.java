@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.gavrilov.core.books.model.Book;
-import ru.gavrilov.core.repositories.BookRepositories;
+import ru.gavrilov.core.books.service.BookService;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -13,51 +13,42 @@ import java.util.List;
 @RequestMapping("/api")
 public class BookController {
 
-    @Autowired
-    private BookRepositories bookRepositories;
+    private BookService bookService;
+
+    public BookController(BookService bookService) {
+        this.bookService = bookService;
+    }
 
     @GetMapping("/books")
     public ResponseEntity<List<Book>> getAllNotes() {
-        return ResponseEntity.ok(bookRepositories.findAll());
+        List<Book> books = bookService.getAllBook();
+        return ResponseEntity.ok(books);
     }
 
     @PostMapping("/books")
     public ResponseEntity<Book> createNote(@Valid @RequestBody Book book) {
-        Book saveBook = bookRepositories.save(book);
+        Book saveBook = bookService.createBook(book);
         return ResponseEntity.ok(saveBook);
     }
 
     @GetMapping("/books/{id}")
     public ResponseEntity<Book> getNoteById(@PathVariable(value = "id") Long bookId) {
-        Book book = bookRepositories.findOne(bookId);
-        if(book == null) {
-            return ResponseEntity.notFound().build();
-        }
+        Book book = bookService.getBookById(bookId);
+
         return ResponseEntity.ok(book);
     }
 
     @PutMapping("/books/save/{id}")
     public ResponseEntity<Book> updateNote(@PathVariable(value = "id") Long bookId,
                                            @Valid @RequestBody Book bookDetails) {
-        Book book = bookRepositories.findOne(bookId);
-        if(book == null) {
-            return ResponseEntity.notFound().build();
-        }
-        book.setTitle(bookDetails.getTitle());
-        book.setDescription((bookDetails.getDescription()));
+        Book updatedBook = bookService.updateBook(bookId,bookDetails);
 
-        Book updatedBook = bookRepositories.save(book);
         return ResponseEntity.ok(updatedBook);
     }
 
-/*    @DeleteMapping("/books/{id}")
+    @DeleteMapping("/books/{id}")
     public ResponseEntity<Book> deleteNote(@PathVariable(value = "id") Long bookId) {
-        Book book = bookRepositories.findOne(bookId);
-        if(book == null) {
-            return ResponseEntity.notFound().build();
-        }
-
-        bookRepositories.delete(book);
+        bookService.deleteBook(bookId);
         return ResponseEntity.ok().build();
-    }*/
+    }
 }
