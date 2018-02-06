@@ -6,6 +6,7 @@ import ru.gavrilov.core.books.model.Book;
 
 import javax.annotation.Nonnull;
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -13,19 +14,29 @@ import java.util.List;
 @EntityListeners(AuditingEntityListener.class)
 public class User extends Human {
 
-    @Column(name="login",length = 25)
+    @Column(name="login",length = 25, nullable = false)
     private String login;
 
-    @Column(name="password",length = 25)
+    @Column(name="pass",length = 25, nullable = false)
     private String password;
 
-    @Column(name = "email")
+    @Column(name = "email", nullable = false)
     private String email;
 
     @OneToMany(mappedBy = "user")
     private List<Book> books;
 
     public User() {
+    }
+
+    public User(String fullName,Date dateOfBrith,Boolean sex,Integer age,String login, String password, String email) {
+        setFullName(fullName);
+        setDateOfBrith(dateOfBrith);
+        setSex(sex);
+        setAge(age);
+        this.login = login;
+        this.password = password;
+        this.email = email;
     }
 
     @Nonnull
@@ -55,7 +66,6 @@ public class User extends Human {
         this.email = email;
     }
 
-    @Nonnull
     public List<Book> getBooks() {
         return books;
     }

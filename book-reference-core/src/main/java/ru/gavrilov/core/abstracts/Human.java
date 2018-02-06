@@ -10,7 +10,7 @@ public abstract class Human {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "full_name")
+    @Column(name = "full_name", nullable = false)
     private String fullName;
 
     @Column(name = "date_birth")
@@ -25,7 +25,7 @@ public abstract class Human {
     public Human() {
     }
 
-    @Nonnull
+    //Надо уточнить
     public Long getId() {
         return id;
     }

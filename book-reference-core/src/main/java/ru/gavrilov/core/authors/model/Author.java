@@ -21,6 +21,11 @@ public class Author extends ru.gavrilov.core.abstracts.Entity {
     public Author() {
     }
 
+    public Author(String fullName, List<Book> books) {
+        this.fullName = fullName;
+        this.books = books;
+    }
+
     @Nonnull
     public String getFullName() {
         return fullName;
