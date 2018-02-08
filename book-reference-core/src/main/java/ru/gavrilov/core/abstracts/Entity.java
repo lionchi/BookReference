@@ -9,7 +9,6 @@ public abstract class Entity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Nonnull
     public Long getId() {
         return id;
     }

@@ -4,6 +4,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import ru.gavrilov.core.books.model.Book;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import javax.persistence.*;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
 @EntityListeners(AuditingEntityListener.class)
 public class Author extends ru.gavrilov.core.abstracts.Entity {
 
-    @Column(name = "full_name", length = 255)
+    @Column(name = "full_name",nullable = false)
     private String fullName;
 
     @OneToMany(mappedBy = "author")
@@ -21,7 +22,7 @@ public class Author extends ru.gavrilov.core.abstracts.Entity {
     public Author() {
     }
 
-    public Author(String fullName, List<Book> books) {
+    public Author(String fullName) {
         this.fullName = fullName;
         this.books = books;
     }
@@ -35,7 +36,7 @@ public class Author extends ru.gavrilov.core.abstracts.Entity {
         this.fullName = fullName;
     }
 
-    @Nonnull
+    @Nullable
     public List<Book> getBooks() {
         return books;
     }

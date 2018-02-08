@@ -12,7 +12,6 @@ import java.util.List;
 @Transactional
 public class AuthorService {
 
-    //@Autowired
     private AuthorRepository authorRepository;
 
     public AuthorService(@Nonnull AuthorRepository authorRepository) {

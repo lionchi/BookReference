@@ -1,53 +1,40 @@
-package ru.gavrilov.core.users.model;
+package ru.gavrilov.core.users.dto;
 
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import ru.gavrilov.core.books.dto.BookDTO;
 import ru.gavrilov.core.books.model.Book;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
-@Entity
-@Table(name = "users")
-@EntityListeners(AuditingEntityListener.class)
-public class User extends ru.gavrilov.core.abstracts.Entity {
+public class UserDTO {
 
-    @Column(name = "full_name")
+    private Long id;
+
     private String fullName;
 
-    @Column(name="login",length = 25, nullable = false)
     private String login;
 
-    @Column(name="pass",length = 25, nullable = false)
     private String password;
 
-    @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(name = "sex", nullable = false)
     private Boolean sex;
 
-    @Column(name = "date_birth", nullable = false)
     private Date dateOfBrith;
 
-    @OneToMany(mappedBy = "user")
     private List<Book> books;
 
-    public User() {
+    public UserDTO() {
     }
 
-    public User(String fullName, String login, String password, String email, Boolean sex, Date dateOfBrith) {
-        this.fullName = fullName;
-        this.login = login;
-        this.password = password;
-        this.email = email;
-        this.sex = sex;
-        this.dateOfBrith = dateOfBrith;
+    public Long getId() {
+        return id;
     }
 
-    @Nullable
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getFullName() {
         return fullName;
     }
@@ -56,7 +43,6 @@ public class User extends ru.gavrilov.core.abstracts.Entity {
         this.fullName = fullName;
     }
 
-    @Nonnull
     public String getLogin() {
         return login;
     }
@@ -65,7 +51,6 @@ public class User extends ru.gavrilov.core.abstracts.Entity {
         this.login = login;
     }
 
-    @Nonnull
     public String getPassword() {
         return password;
     }
@@ -74,7 +59,6 @@ public class User extends ru.gavrilov.core.abstracts.Entity {
         this.password = password;
     }
 
-    @Nonnull
     public String getEmail() {
         return email;
     }
@@ -83,7 +67,6 @@ public class User extends ru.gavrilov.core.abstracts.Entity {
         this.email = email;
     }
 
-    @Nonnull
     public Boolean getSex() {
         return sex;
     }
@@ -92,7 +75,6 @@ public class User extends ru.gavrilov.core.abstracts.Entity {
         this.sex = sex;
     }
 
-    @Nonnull
     public Date getDateOfBrith() {
         return dateOfBrith;
     }
@@ -101,7 +83,6 @@ public class User extends ru.gavrilov.core.abstracts.Entity {
         this.dateOfBrith = dateOfBrith;
     }
 
-    @Nullable
     public List<Book> getBooks() {
         return books;
     }
@@ -109,4 +90,5 @@ public class User extends ru.gavrilov.core.abstracts.Entity {
     public void setBooks(List<Book> books) {
         this.books = books;
     }
+
 }

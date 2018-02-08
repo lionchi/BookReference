@@ -4,6 +4,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import ru.gavrilov.core.authors.model.Author;
 import ru.gavrilov.core.users.model.User;
 
+import javax.annotation.Nullable;
 import javax.persistence.*;
 import javax.annotation.Nonnull;
 import java.util.Date;
@@ -13,10 +14,10 @@ import java.util.Date;
 @EntityListeners(AuditingEntityListener.class)
 public class Book extends ru.gavrilov.core.abstracts.Entity {
 
-    @Column(name = "title")
+    @Column(name = "title", nullable = false)
     private String title;
 
-    @Column(name = "description", nullable = false)
+    @Column(name = "description")
     private String description;
 
     @Column(name = "date_release")
@@ -33,7 +34,7 @@ public class Book extends ru.gavrilov.core.abstracts.Entity {
     public Book() {
     }
 
-    public Book(String title, String description, Date dateRelease, User user, Author author) {
+    public Book(String title, String description, Date dateRelease, User user) {
         this.title = title;
         this.description = description;
         this.dateRelease = dateRelease;
@@ -50,7 +51,7 @@ public class Book extends ru.gavrilov.core.abstracts.Entity {
         this.title = title;
     }
 
-    @Nonnull
+    @Nullable
     public String getDescription() {
         return description;
     }
@@ -59,20 +60,30 @@ public class Book extends ru.gavrilov.core.abstracts.Entity {
         this.description = description;
     }
 
-    @Nonnull
-    public Date getDate_release() {
+    @Nullable
+    public Date getDateRelease() {
         return dateRelease;
     }
 
-    public void setDate_release(Date date_release) {
-        this.dateRelease = date_release;
+    public void setDateRelease(Date dateRelease) {
+        this.dateRelease = dateRelease;
     }
 
+    @Nonnull
     public User getUser() {
         return user;
     }
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @Nullable
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
     }
 }

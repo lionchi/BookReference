@@ -107,5 +107,8 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework:spring-test:4.3.13.RELEASE" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: junit:junit:4.12" level="project" />
     <orderEntry type="library" name="Maven: com.google.guava:guava:18.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: fr.xebia.extras:selma-processor:1.0" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: com.squareup:javawriter:2.5.0" level="project" />
+    <orderEntry type="library" name="Maven: fr.xebia.extras:selma:1.0" level="project" />
   </component>
 </module>

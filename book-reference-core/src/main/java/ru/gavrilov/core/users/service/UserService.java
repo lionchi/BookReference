@@ -12,7 +12,6 @@ import java.util.List;
 @Transactional
 public class UserService {
 
-    //@Autowired
     private UserRepositories userRepositories;
 
     public UserService(@Nonnull UserRepositories userRepositories) {
@@ -46,7 +45,6 @@ public class UserService {
         user.setPassword((userDetails.getPassword()));
         user.setEmail((userDetails.getEmail()));
         user.setBooks((userDetails.getBooks()));
-        user.setAge((userDetails.getAge()));
         user.setFullName((userDetails.getFullName()));
         user.setSex((userDetails.getSex()));
         user.setDateOfBrith((userDetails.getDateOfBrith()));

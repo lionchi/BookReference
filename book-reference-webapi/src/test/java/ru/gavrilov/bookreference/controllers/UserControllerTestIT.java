@@ -1,19 +1,14 @@
 package ru.gavrilov.bookreference.controllers;
 
 import com.google.common.collect.ImmutableList;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponentsBuilder;
-import ru.gavrilov.bookreference.BookReferenceAppRun;
 import ru.gavrilov.core.users.model.User;
 
 import java.util.Date;
@@ -33,6 +28,12 @@ import static org.junit.Assert.*;
 public class UserControllerTestIT {
 
     private TestRestTemplate restTemplate = new TestRestTemplate();
+    private User user;
+
+    @Before
+    public void setUser(){
+        user = new User("Иванов Иван Иванович","ivan","545454","test@mail.ru",false,new Date());
+    }
 
     @Test
     public void getAllUsers() throws Exception {
@@ -50,7 +51,7 @@ public class UserControllerTestIT {
 
     @Test
     public void createUser() throws Exception {
-        HttpEntity<User> request = new HttpEntity<>(new User("Иванов Иван", new Date(), false, 45, "lionchi", "545454", "test@mail.ru"));
+        HttpEntity<User> request = new HttpEntity<>(user);
         ResponseEntity<User> response = restTemplate
                 .exchange("http://localhost:8080/api/users/create", HttpMethod.POST, request, User.class);
 
@@ -73,10 +74,33 @@ public class UserControllerTestIT {
 
     @Test
     public void updateUser() throws Exception {
+        HttpEntity<User> request = new HttpEntity<>(user);
+
+        ResponseEntity<User> createResponse = restTemplate
+                .exchange("http://localhost:8080/api/users/create", HttpMethod.POST, request, User.class);
+
+        assertThat(createResponse.getStatusCode(), is(HttpStatus.OK));
+
+        User updatedInstance = new User("Новый Иван Иванович","newIvan","545454","test@mail.ru",false,new Date());
+
+        updatedInstance.setId(createResponse.getBody().getId());
+
+        String resourceUrl = "http://localhost:8080/api/users/save/{id}";
+        Map<String, Object> params = new HashMap<>();
+        params.put("id", createResponse.getBody().getId());
+
+
+        HttpEntity<User> requestUpdate = new HttpEntity<>(updatedInstance);
+        ResponseEntity<User> updateResponse = restTemplate.exchange(resourceUrl, HttpMethod.PUT, requestUpdate, User.class, params);
+
+        assertThat(updateResponse.getStatusCode(), is(HttpStatus.OK));
     }
 
     @Test
     public void deleteUser() throws Exception {
+        String resourceUrl = "http://localhost:8080/api/users/{id}";
+        Map<String, Object> params = new HashMap<>();
+        params.put("id", 11L);
+        restTemplate.delete(resourceUrl,params);
     }
-
 }
