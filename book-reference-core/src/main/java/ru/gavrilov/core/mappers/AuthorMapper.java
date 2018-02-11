@@ -5,7 +5,7 @@ import fr.xebia.extras.selma.Mapper;
 import ru.gavrilov.core.authors.dto.AuthorDTO;
 import ru.gavrilov.core.authors.model.Author;
 
-@Mapper(withCustom = AuthorCustomMapper.class,withIgnoreMissing = IgnoreMissing.ALL)
+@Mapper(withCustom = AuthorCustomMapper.class,withIgnoreMissing = IgnoreMissing.ALL, withIgnoreFields = "books")
 public interface AuthorMapper {
     AuthorDTO asAuthorDTO(Author source);
 

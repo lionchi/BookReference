@@ -8,6 +8,8 @@ import ru.gavrilov.core.authors.dto.AuthorDTO;
 import ru.gavrilov.core.authors.model.Author;
 import ru.gavrilov.core.books.dto.BookDTO;
 import ru.gavrilov.core.books.model.Book;
+import ru.gavrilov.core.mappers.UserMapper;
+import ru.gavrilov.core.users.dto.UserDTO;
 import ru.gavrilov.core.users.model.User;
 
 import java.util.Arrays;
@@ -26,7 +28,7 @@ public class DtoMappedUnitTest {
         User user = new User("Иванов Иван Иванович","ivan","545454","test@mail.ru",false,new Date());
         user.setId(1L);
 
-        Book book = new Book("Бегущий человек","Человек который бегает",new Date(),user);
+        Book book = new Book("Бегущий человек","Человек который бегает","1960",user);
         BookDTO res = mapper.asBookDTO(book);
 
         assertNotNull(res);
@@ -52,7 +54,7 @@ public class DtoMappedUnitTest {
         BookDTO bookDTO = new BookDTO();
         bookDTO.setDescription("Бла-Бла-Бла");
         bookDTO.setUserId(6L);
-        bookDTO.setDateRelease(new Date());
+        bookDTO.setYearOfPublication("1960");
         bookDTO.setTitle("Банан");
 
         Book book = mapperBook.asBook(bookDTO);
@@ -64,6 +66,32 @@ public class DtoMappedUnitTest {
         AuthorDTO res = mapperAuthor.asAuthorDTO(author);
 
         assertNotNull(res);
+    }
+
+    @Test
+    public void testSelmaUserDto() {
+        // Get SelmaMapper
+        UserMapper mapper = Selma.builder(UserMapper.class).build();
+
+        // Map my InBean
+        User user = new User("Иванов Иван Иванович", "ivan", "545454", "test@mail.ru", false, new Date());
+        user.setId(1L);
+        user.setBooks(Arrays.asList(new Book()));
+
+        UserDTO userDTO = mapper.asUserDTO(user);
+
+        assertNotNull(userDTO);
+
+        UserDTO newUserDTO = new UserDTO();
+        newUserDTO.setFullName("Вася");
+        newUserDTO.setEmail("test@mail.ru");
+        newUserDTO.setLogin("test");
+        newUserDTO.setPassword("545454");
+        newUserDTO.setDateOfRegistration(new Date());
+
+        User newUser = mapper.asUser(newUserDTO);
+
+        assertNotNull(newUser);
     }
 
 }

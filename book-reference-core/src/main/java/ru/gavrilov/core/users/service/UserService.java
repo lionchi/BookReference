@@ -47,7 +47,7 @@ public class UserService {
         user.setBooks((userDetails.getBooks()));
         user.setFullName((userDetails.getFullName()));
         user.setSex((userDetails.getSex()));
-        user.setDateOfBrith((userDetails.getDateOfBrith()));
+        user.setDateOfRegistration((userDetails.getDateOfRegistration()));
 
         User updatedUser = userRepositories.save(user);
         return updatedUser;

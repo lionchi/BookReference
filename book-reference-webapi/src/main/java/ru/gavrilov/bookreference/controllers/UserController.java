@@ -20,8 +20,8 @@ public class UserController {
 
     @GetMapping()
     public ResponseEntity<List<User>> getAllUsers() {
-        List<User> books = userService.getAllUser();
-        return ResponseEntity.ok(books);
+        List<User> users = userService.getAllUser();
+        return ResponseEntity.ok(users);
     }
 
     @PostMapping("/create")

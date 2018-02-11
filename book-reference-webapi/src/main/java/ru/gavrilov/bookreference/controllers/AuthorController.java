@@ -20,8 +20,8 @@ public class AuthorController {
 
     @GetMapping()
     public ResponseEntity<List<Author>> getAllAuthors() {
-        List<Author> books = authorService.getAllAuthor();
-        return ResponseEntity.ok(books);
+        List<Author> authors = authorService.getAllAuthor();
+        return ResponseEntity.ok(authors);
     }
 
     @PostMapping("/create")

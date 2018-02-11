@@ -1,6 +1,6 @@
 package ru.gavrilov.core.authors.dto;
 
-import ru.gavrilov.core.books.model.Book;
+import ru.gavrilov.core.books.dto.BookDTO;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ public class AuthorDTO {
 
     private String fullName;
 
-    private List<Book> books;
+    private List<BookDTO> books;
 
     public AuthorDTO() {
     }
@@ -31,11 +31,11 @@ public class AuthorDTO {
         this.fullName = fullName;
     }
 
-    public List<Book> getBooks() {
+    public List<BookDTO> getBooks() {
         return books;
     }
 
-    public void setBooks(List<Book> books) {
+    public void setBooks(List<BookDTO> books) {
         this.books = books;
     }
 }

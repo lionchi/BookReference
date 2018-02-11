@@ -1,17 +1,14 @@
 package ru.gavrilov.core.books.model;
 
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import ru.gavrilov.core.authors.model.Author;
 import ru.gavrilov.core.users.model.User;
 
 import javax.annotation.Nullable;
 import javax.persistence.*;
 import javax.annotation.Nonnull;
-import java.util.Date;
 
 @Entity
 @Table(name = "books")
-@EntityListeners(AuditingEntityListener.class)
 public class Book extends ru.gavrilov.core.abstracts.Entity {
 
     @Column(name = "title", nullable = false)
@@ -20,8 +17,8 @@ public class Book extends ru.gavrilov.core.abstracts.Entity {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "date_release")
-    private Date dateRelease;
+    @Column(name = "year_publication", length = 10)
+    private String yearOfPublication;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
@@ -34,10 +31,10 @@ public class Book extends ru.gavrilov.core.abstracts.Entity {
     public Book() {
     }
 
-    public Book(String title, String description, Date dateRelease, User user) {
+    public Book(String title, String description, String yearOfPublication, User user) {
         this.title = title;
         this.description = description;
-        this.dateRelease = dateRelease;
+        this.yearOfPublication = yearOfPublication;
         this.user = user;
         this.author = author;
     }
@@ -61,12 +58,12 @@ public class Book extends ru.gavrilov.core.abstracts.Entity {
     }
 
     @Nullable
-    public Date getDateRelease() {
-        return dateRelease;
+    public String getYearOfPublication() {
+        return yearOfPublication;
     }
 
-    public void setDateRelease(Date dateRelease) {
-        this.dateRelease = dateRelease;
+    public void setYearOfPublication(String yearOfPublication) {
+        this.yearOfPublication = yearOfPublication;
     }
 
     @Nonnull

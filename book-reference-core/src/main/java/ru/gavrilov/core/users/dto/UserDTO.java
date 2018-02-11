@@ -1,7 +1,6 @@
 package ru.gavrilov.core.users.dto;
 
 import ru.gavrilov.core.books.dto.BookDTO;
-import ru.gavrilov.core.books.model.Book;
 
 import java.util.Date;
 import java.util.List;
@@ -20,9 +19,9 @@ public class UserDTO {
 
     private Boolean sex;
 
-    private Date dateOfBrith;
+    private Date dateOfRegistration;
 
-    private List<Book> books;
+    private List<BookDTO> books;
 
     public UserDTO() {
     }
@@ -75,19 +74,19 @@ public class UserDTO {
         this.sex = sex;
     }
 
-    public Date getDateOfBrith() {
-        return dateOfBrith;
+    public Date getDateOfRegistration() {
+        return dateOfRegistration;
     }
 
-    public void setDateOfBrith(Date dateOfBrith) {
-        this.dateOfBrith = dateOfBrith;
+    public void setDateOfRegistration(Date dateOfRegistration) {
+        this.dateOfRegistration = dateOfRegistration;
     }
 
-    public List<Book> getBooks() {
+    public List<BookDTO> getBooks() {
         return books;
     }
 
-    public void setBooks(List<Book> books) {
+    public void setBooks(List<BookDTO> books) {
         this.books = books;
     }
 

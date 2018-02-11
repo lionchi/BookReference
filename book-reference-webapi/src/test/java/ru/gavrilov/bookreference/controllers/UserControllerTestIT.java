@@ -58,7 +58,7 @@ public class UserControllerTestIT {
         User user = response.getBody();
 
         assertThat(user, notNullValue());
-        assertThat(user.getId(), is(4L));
+        assertThat(user.getId(), is(8L));
     }
 
     @Test
@@ -66,10 +66,10 @@ public class UserControllerTestIT {
         String transactionUrl = "http://localhost:8080/api/users/{id}";
 
         Map<String, Object> params = new HashMap<>();
-        params.put("id", 1L);
+        params.put("id", 5L);
         User user = restTemplate.getForObject(transactionUrl, User.class, params);
 
-        assertEquals(java.util.Optional.of(1L).get(), user.getId());
+        assertEquals(java.util.Optional.of(5L).get(), user.getId());
     }
 
     @Test

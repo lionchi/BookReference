@@ -1,8 +1,6 @@
 package ru.gavrilov.core.books.dto;
 
 
-import java.util.Date;
-
 public class BookDTO {
 
     private Long id;
@@ -11,7 +9,7 @@ public class BookDTO {
 
     private String description;
 
-    private Date dateRelease;
+    private String yearOfPublication;
 
     private Long userId;
 
@@ -44,12 +42,12 @@ public class BookDTO {
         this.description = description;
     }
 
-    public Date getDateRelease() {
-        return dateRelease;
+    public String getYearOfPublication() {
+        return yearOfPublication;
     }
 
-    public void setDateRelease(Date dateRelease) {
-        this.dateRelease = dateRelease;
+    public void setYearOfPublication(String yearOfPublication) {
+        this.yearOfPublication = yearOfPublication;
     }
 
     public Long getUserId() {

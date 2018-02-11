@@ -1,6 +1,5 @@
 package ru.gavrilov.core.books.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.gavrilov.core.books.model.Book;

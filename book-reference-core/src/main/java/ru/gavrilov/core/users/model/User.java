@@ -1,6 +1,5 @@
 package ru.gavrilov.core.users.model;
 
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import ru.gavrilov.core.books.model.Book;
 
 import javax.annotation.Nonnull;
@@ -11,7 +10,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "users")
-@EntityListeners(AuditingEntityListener.class)
 public class User extends ru.gavrilov.core.abstracts.Entity {
 
     @Column(name = "full_name")
@@ -29,22 +27,22 @@ public class User extends ru.gavrilov.core.abstracts.Entity {
     @Column(name = "sex", nullable = false)
     private Boolean sex;
 
-    @Column(name = "date_birth", nullable = false)
-    private Date dateOfBrith;
+    @Column(name = "date_registration", nullable = false)
+    private Date dateOfRegistration;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Book> books;
 
     public User() {
     }
 
-    public User(String fullName, String login, String password, String email, Boolean sex, Date dateOfBrith) {
+    public User(String fullName, String login, String password, String email, Boolean sex, Date dateOfRegistration) {
         this.fullName = fullName;
         this.login = login;
         this.password = password;
         this.email = email;
         this.sex = sex;
-        this.dateOfBrith = dateOfBrith;
+        this.dateOfRegistration = dateOfRegistration;
     }
 
     @Nullable
@@ -93,12 +91,12 @@ public class User extends ru.gavrilov.core.abstracts.Entity {
     }
 
     @Nonnull
-    public Date getDateOfBrith() {
-        return dateOfBrith;
+    public Date getDateOfRegistration() {
+        return dateOfRegistration;
     }
 
-    public void setDateOfBrith(Date dateOfBrith) {
-        this.dateOfBrith = dateOfBrith;
+    public void setDateOfRegistration(Date dateOfRegistration) {
+        this.dateOfRegistration = dateOfRegistration;
     }
 
     @Nullable
