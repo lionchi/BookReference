@@ -67,13 +67,14 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- для IT теста -->
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>18.0</version>
         </dependency>
 
-        <!-- scope provided because the processor is only needed at compile time-->
+        <!-- для маппинга -->
         <dependency>
             <groupId>fr.xebia.extras</groupId>
             <artifactId>selma-processor</artifactId>
@@ -81,11 +82,17 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- This is the only real dependency you will have in your binaries -->
+        <!-- для маппинга -->
         <dependency>
             <groupId>fr.xebia.extras</groupId>
             <artifactId>selma</artifactId>
             <version>1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
         </dependency>
 
     </dependencies>
