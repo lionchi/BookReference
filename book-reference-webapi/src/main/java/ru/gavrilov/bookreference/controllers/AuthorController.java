@@ -2,51 +2,60 @@ package ru.gavrilov.bookreference.controllers;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.gavrilov.core.authors.dto.AuthorDTO;
 import ru.gavrilov.core.authors.model.Author;
 import ru.gavrilov.core.authors.service.AuthorService;
+import ru.gavrilov.core.mappers.AuthorMapper;
+import ru.gavrilov.core.mappers.MapperFactory;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/authors")
 public class AuthorController {
 
     private AuthorService authorService;
+    private static final AuthorMapper authorMapper = MapperFactory.createMapper(AuthorMapper.class);
 
     public AuthorController(AuthorService authorService) {
         this.authorService = authorService;
     }
 
     @GetMapping()
-    public ResponseEntity<List<Author>> getAllAuthors() {
+    public ResponseEntity<List<AuthorDTO>> getAllAuthors() {
         List<Author> authors = authorService.getAllAuthor();
-        return ResponseEntity.ok(authors);
+        List<AuthorDTO> authorDtoList = authors.stream()
+                .map((authorMapper::asAuthorDTO))
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(authorDtoList);
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Author> createAuthor(@Valid @RequestBody Author author) {
+    public ResponseEntity<AuthorDTO> createAuthor(@Valid @RequestBody AuthorDTO author) {
         Author saveAuthor = authorService.createAuthor(author);
-        return ResponseEntity.ok(saveAuthor);
+        AuthorDTO saveAuthorDto = authorMapper.asAuthorDTO(saveAuthor);
+        return ResponseEntity.ok(saveAuthorDto);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Author> getAuthorById(@PathVariable(value = "id") Long authorId) {
+    public ResponseEntity<AuthorDTO> getAuthorById(@PathVariable(value = "id") Long authorId) {
         Author author = authorService.getAuthorById(authorId);
-
-        return ResponseEntity.ok(author);
+        AuthorDTO authorDto = authorMapper.asAuthorDTO(author);
+        return ResponseEntity.ok(authorDto);
     }
 
     @PutMapping("/save/{id}")
-    public ResponseEntity<Author> updateAuthor(@PathVariable(value = "id") Long authorId,
-                                           @Valid @RequestBody Author authorDetails) {
+    public ResponseEntity<AuthorDTO> updateAuthor(@PathVariable(value = "id") Long authorId,
+                                           @Valid @RequestBody AuthorDTO authorDetails) {
         Author updatedAuthor= authorService.updateAuthor(authorId, authorDetails);
-
-        return ResponseEntity.ok(updatedAuthor);
+        AuthorDTO updateAuthorDto = authorMapper.asAuthorDTO(updatedAuthor);
+        return ResponseEntity.ok(updateAuthorDto);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Author> deleteAuthor(@PathVariable(value = "id") Long authorId) {
+    public ResponseEntity<?> deleteAuthor(@PathVariable(value = "id") Long authorId) {
         authorService.deleteAuthor(authorId);
         return ResponseEntity.ok().build();
     }
