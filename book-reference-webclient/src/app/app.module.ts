@@ -8,12 +8,15 @@ import { BookService } from './books/book.service';
 import { BooklistComponent } from './books/booklist.component';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { LoginComponent } from './logins/login.component';
+import { LoginService } from './logins/login.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    BooklistComponent
+    BooklistComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +24,7 @@ import { HttpModule } from '@angular/http';
     HttpModule,
     routing
   ],
-  providers: [BookService],
+  providers: [BookService, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

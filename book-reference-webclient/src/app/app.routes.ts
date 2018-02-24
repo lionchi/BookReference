@@ -1,7 +1,12 @@
 import { BooklistComponent } from './books/booklist.component';
+import { LoginComponent } from './logins/login.component';
 import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
 
+  {
+    path: 'login',
+    component: LoginComponent
+  },
   {
     path: 'book',
     component: BooklistComponent
@@ -19,7 +24,7 @@ const routes: Routes = [
  
   {
     path: '',
-    redirectTo: '/book',
+    redirectTo: '/login',
     pathMatch: 'full'
   },
 ];
