@@ -4,3 +4,5 @@ out
 *.class
 *.jar
 *.iml
+package.json
+package-lock.json
