@@ -1,20 +1,40 @@
-
-<section class = "panel">
-	<form (ngSubmit)="authorization()" #loginForm="ngForm" class="panel-body">
-		<div class="input-group">
-			<span class="input-group-addon">Login</span> 
-			<input type="text" class = "form-control" name="logintitle" required [(ngModel)]="login" #logintitle="ngModel">
-		</div>
-		<div [hidden]="logintitle.valid || logintitle.pristine" class="error">
-	   		Name cannot be empty.
-		</div>		
-		<br/>
-		<div class="input-group">
-		  <span class="input-group-addon">Password</span>
-	 			<input type="text" class ="form-control" name="password" required [(ngModel)]="password">
-		</div>
-		<br/>
-		<button type="submit" [disabled]="!loginForm.form.valid" class = "btn">Authorization</button>
-	</form>
-</section>
-<section *ngIf="errorMessage" class = "error">{{errorMessage}}</section>
+<div class="parent">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	</head>
+	<section class = "panel">
+		<form (ngSubmit)="authorization()" #loginForm="ngForm" class="panel-body">
+			<div class = "navbar-header navbar-brand"> Авторизация
+			</div>
+			<div class="input-group">
+				<span class="input-group-addon">Логин</span> 
+				<input type="text" class = "form-control" name="logintitle" required [(ngModel)]="login" #logintitle="ngModel">
+			</div>
+			<div [hidden]="logintitle.valid || logintitle.pristine" class="error">
+		   		Name cannot be empty.
+			</div>		
+			<br>
+			<div class="input-group">
+			  <span class="input-group-addon">Пароль</span>
+		 			<input type="text" class ="form-control" name="password" required [(ngModel)]="password">
+			</div>
+			<br/>
+			<button type="submit" [disabled]="!loginForm.form.valid" class = "btn">Войти</button>
+		</form>
+		<a class="ref" href="URL">Восстановление пароля</a>
+	</section>
+	<section *ngIf="errorMessage" class = "error">{{errorMessage}}</section>
+	
+	 <div class="header">
+	     <div>
+		    <img src="../image/authorization.png" class="image-header"/>
+		 </div> 
+	 	 <div >
+		    <label class="call-header">Библиография</label>
+		 </div> 
+		 <div>
+		 	<a class="btn-header" href="URL">Зарегистрироваться</a>
+		 </div>
+		 
+	 </div>
+ </div>
