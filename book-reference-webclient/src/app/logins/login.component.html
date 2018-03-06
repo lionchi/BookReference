@@ -2,6 +2,18 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	</head>
+	<div class="header">
+	     <div>
+		    <img src="https://image.flaticon.com/icons/svg/167/167756.svg" class="image-header"/>
+		 </div> 
+	 	 <div >
+		    <label class="call-header">Библиография</label>
+		 </div> 
+		 <div>
+		 	<a class="btn-header" href="URL">Зарегистрироваться</a>
+		 </div>
+	 </div>
+	 
 	<section class = "panel">
 		<form (ngSubmit)="authorization()" #loginForm="ngForm" class="panel-body">
 			<div class = "navbar-header navbar-brand"> Авторизация
@@ -11,30 +23,20 @@
 				<input type="text" class = "form-control" name="logintitle" required [(ngModel)]="login" #logintitle="ngModel">
 			</div>
 			<div [hidden]="logintitle.valid || logintitle.pristine" class="error">
-		   		Name cannot be empty.
+		   		Введите логин
 			</div>		
 			<br>
 			<div class="input-group">
 			  <span class="input-group-addon">Пароль</span>
-		 			<input type="text" class ="form-control" name="password" required [(ngModel)]="password">
+		 			<input type="text" class ="form-control" name="passwordtitle" required [(ngModel)]="password" #passwordtitle="ngModel">
 			</div>
+			<div [hidden]="passwordtitle.valid || passwordtitle.pristine" class="error">
+		   		Введите пароль
+			</div>	
 			<br/>
 			<button type="submit" [disabled]="!loginForm.form.valid" class = "btn">Войти</button>
 		</form>
 		<a class="ref" href="URL">Восстановление пароля</a>
 	</section>
 	<section *ngIf="errorMessage" class = "error">{{errorMessage}}</section>
-	
-	 <div class="header">
-	     <div>
-		    <img src="../image/authorization.png" class="image-header"/>
-		 </div> 
-	 	 <div >
-		    <label class="call-header">Библиография</label>
-		 </div> 
-		 <div>
-		 	<a class="btn-header" href="URL">Зарегистрироваться</a>
-		 </div>
-		 
-	 </div>
  </div>

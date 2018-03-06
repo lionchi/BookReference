@@ -6,7 +6,7 @@
     top: 0;
     left: 0;
     overflow: auto;
-   background-image: url('../image/main_image.jpg');
+    background-image: url('../image/main_image.jpg');
     -moz-background-size: 100%;
     -webkit-background-size: 100%;
     -o-background-size: 100%;
@@ -22,37 +22,72 @@
   }
   
  .input-group-addon{
- font-size: 20px;
- margin-left:40px;
- color:white;
+	 font-size: 20px;
+	 margin-left:40px;
+	 color:white;
+	 
  }
  
  .form-control.ng-untouched.ng-pristine.ng-invalid{
+	 width:330px;
+	 float: right;
+	 margin-right:30px;
+	 resize: none;
+ }
+ 
+  .form-control.ng-untouched.ng-dirty.ng-invalid{
+	 width:330px;
+	 float: right;
+	 margin-right:30px;
+	 resize: none;
+ }
+ 
+   .form-control.ng-untouched.ng-dirty.ng-valid{
+	 width:330px;
+	 float: right;
+	 margin-right:30px;
+	 resize: none;
+ }
+ 
+  .form-control.ng-dirty.ng-touched.ng-valid{
+  	 width:330px;
+	 float: right;
+	 margin-right:30px;
+	 resize: none;
+ }
+ .form-control.ng-dirty.ng-touched.ng-invalid{
  width:330px;
- float: right;
- margin-right:30px;
+	 float: right;
+	 margin-right:30px;
+	 resize: none;
+ }
+ 
+ .error
+ {
+ 	 color:white;
+ 	 text-align: center;
  }
  
 .btn { 
-position: relative;
- font-weight: bold;
- color: white;
- text-decoration: none;
- text-shadow: 0 -1px 1px #cc5500;
- user-select: none;
- padding: .8em 2em;
- outline: none;
- border-radius: 1px;
- background: linear-gradient(to left, rgba(0,0,0,.3), rgba(0,0,0,.0) 50%, rgba(0,0,0,.3)), linear-gradient(#d77d31, #fe8417, #d77d31);
- background-size: 100% 100%, auto;
- background-position: 50% 50%;
- box-shadow: inset #ebab00 0 -1px 1px, inset 0 1px 1px #ffbf00, #cc7722 0 0 0 1px, #000 0 10px 15px -10px;
- transition: 0.2s;
-margin-top:20px;
-margin-bottom:20px;
-display: block;
-margin-left: auto;
-margin-right: auto 
+	 position: relative;
+	 font-weight: bold;
+	 color: white;
+	 text-decoration: none;
+	 text-shadow: 0 -1px 1px #cc5500;
+	 user-select: none;
+	 padding: .8em 2em;
+	 outline: none;
+	 border-radius: 1px;
+	 background: linear-gradient(to left, rgba(0,0,0,.3), rgba(0,0,0,.0) 50%, rgba(0,0,0,.3)), linear-gradient(#d77d31, #fe8417, #d77d31);
+	 background-size: 100% 100%, auto;
+	 background-position: 50% 50%;
+	 box-shadow: inset #ebab00 0 -1px 1px, inset 0 1px 1px #ffbf00, #cc7722 0 0 0 1px, #000 0 10px 15px -10px;
+	 transition: 0.2s;
+	 margin-top:10px;
+	 margin-bottom:20px;
+	 display: block;
+	 margin-left: auto;
+	 margin-right: auto 
 } 
 button.btn:hover { background:  #8B4513; } 
 button.btn:active { 
@@ -62,11 +97,11 @@ button.btn:active {
 }
 
 .navbar-header.navbar-brand{
-font-size: 30px;
-margin-top:10px;
-margin-bottom:20px;
-text-align: center;
-color:white;
+	font-size: 30px;
+	margin-top:10px;
+	margin-bottom:20px;
+	text-align: center;
+	color:white;
 }
 
 .ref
@@ -76,27 +111,28 @@ color:white;
     margin-bottom:20px;
 	color:white;
 	opacity:0.8;
-	
 }
 
 .header { 
    float:left;
-      background-color: rgba(214, 21, 87, 0.7); 
+   background-color: rgba(214, 21, 87, 0.7); 
    width:100%;
 }
 .image-header
 {
-margin-top:20px;
-float:left;
-margin-left:20px;
+	width:40px;
+	height:50px;
+	margin-top:8px;
+	float:left;
+	margin-left:20px;
 }
 
 .call-header{
-top:0;
-float:left;
-font-size: 50px;
-margin-bottom:10px;
-color:#fff;
+	top:0;
+	float:left;
+	font-size: 50px;
+	margin-bottom:10px;
+	color:#fff;
 margin-left:20px;
 }
 

@@ -10,17 +10,17 @@ export class LoginService {
 
   constructor(private http: Http) { }
   
-  //authorization(login: string, password: string): Promise<any> {
-  //   const url = `http://localhost:8080/api/logins?login=${login}&password=${password}`;
-  //   return this.http.get(url).toPromise().then(response => response.json());
-  //}
-  
-  authorization(login: string, password: string): Observable<UserDTO> {
-    const url = `http://localhost:8080/api/logins?login=${login}&password=${password}`;
-    return this.http
-      .get(url)
-      .map(mapUser);
+  authorization(login: string, password: string): Promise<any> {
+     const url = `http://localhost:8080/api/logins?login=${login}&password=${password}`;
+     return this.http.get(url).toPromise().then(response => response.json());
   }
+  
+  //authorization(login: string, password: string): Observable<UserDTO> {
+  //  const url = `http://localhost:8080/api/logins?login=${login}&password=${password}`;
+  //  return this.http
+  //    .get(url)
+  //    .map(mapUser);
+  //}
 }
 
 function mapUsers(response: Response): UserDTO[] {
